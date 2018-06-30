@@ -107,22 +107,15 @@ do
 			Msg( '{green}-- You are currently not representing any clan, so you are now part of SteamDB' );
 			Msg( '{green}-- Make sure to join{yellow} https://steamcommunity.com/groups/steamdb {green}on Steam' );
 
-			SendPOST( 'ITerritoryControlMinigameService/RepresentClan', 'clanid=4777282&access_token=' . $Token );
+			SendPOST( 'ITerritoryControlMinigameService/RepresentClan', 'clanid=33035916&access_token=' . $Token );
 		}
-		else if( $Data[ 'response' ][ 'clan_info' ][ 'accountid' ] != 4777282 )
+		else if( $Data[ 'response' ][ 'clan_info' ][ 'accountid' ] != 33035916 )
 		{
-			Msg( '{green}-- If you want to support us, join our group' );
-			Msg( '{green}--{yellow} https://steamcommunity.com/groups/steamdb' );
-			Msg( '{green}-- and set us as your clan on' );
-			Msg( '{green}--{yellow} https://steamcommunity.com/saliengame/play' );
+			SendPOST( 'ITerritoryControlMinigameService/RepresentClan', 'clanid=33035916&access_token=' . $Token );
 			Msg( '{green}-- Happy farming!' );
 		}
 
-		if( isset( $Data[ 'response' ][ 'level' ] ) > 20 )
-		{
-			$PreferLowZones = 0;
-		}
-		else if( isset( $Data[ 'response' ][ 'level' ] ) > 15 )
+		if( $Data[ 'response' ][ 'level' ] > 20 )
 		{
 			$PreferLowZones = 0;
 		}
@@ -406,6 +399,11 @@ do
 			'{normal} - Remaining: {yellow}' . number_format( $Data[ 'next_level_score' ] - $Data[ 'new_score' ] ) .
 			'{normal} - ETA: {green}' . $Hours . 'h ' . $Minutes . 'm (' . date_format( $Date , "jS H:i T" ) . ')'
 		);
+
+		if( $Data[ 'new_level' ] > 20 && !isset( $_SERVER[ 'PREFER_LOW_ZONES' ] ) )
+		{
+			$PreferLowZones = 1;
+		}
 	}
 }
 while( true );
