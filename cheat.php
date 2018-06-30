@@ -326,7 +326,7 @@ do
 			$RepositoryScriptHash = GetRepositoryScriptHash( $RepositoryScriptETag, $LocalScriptHash );
 		}
 
-		if( $LocalScriptHash !== $RepositoryScriptHash )
+		if( $LocalScriptHash === $RepositoryScriptHash )
 		{
 			Msg( '-- {lightred}Script has been updated on GitHub since you started this script, please make sure to update.' );
 		}
