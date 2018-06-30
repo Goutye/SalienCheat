@@ -120,11 +120,11 @@ do
 
 		if( isset( $Data[ 'response' ][ 'level' ] ) > 20 )
 		{
-			$PreferLowZones = 1;
+			$PreferLowZones = 0;
 		}
 		else if( isset( $Data[ 'response' ][ 'level' ] ) > 15 )
 		{
-			$PreferLowZones = rand( 0, 1 );
+			$PreferLowZones = 0;
 		}
 	}
 }
